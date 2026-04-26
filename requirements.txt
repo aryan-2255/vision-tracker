@@ -1,0 +1,4 @@
+rfdetr
+trackers
+supervision
+opencv-python
