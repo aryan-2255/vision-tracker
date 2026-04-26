@@ -22,6 +22,11 @@ import sys
 import cv2
 import supervision as sv
 from rfdetr import RFDETRNano, RFDETRSmall, RFDETRLarge
+try:
+    from rfdetr import RFDETRXLarge, RFDETR2XLarge
+    XL_AVAILABLE = True
+except ImportError:
+    XL_AVAILABLE = False
 from trackers import ByteTrackTracker
 from rfdetr.assets.coco_classes import COCO_CLASSES
 
@@ -41,7 +46,11 @@ MODEL_MAP = {
     "small": RFDETRSmall,
     "large": RFDETRLarge,
 }
-MODEL_CYCLE = ["nano", "small", "large"]
+if XL_AVAILABLE:
+    MODEL_MAP["xl"]  = RFDETRXLarge
+    MODEL_MAP["2xl"] = RFDETR2XLarge
+
+MODEL_CYCLE = ["nano", "small", "large"] + (["xl", "2xl"] if XL_AVAILABLE else [])
 
 
 def load_model(size):

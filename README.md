@@ -75,15 +75,19 @@ CAMERA_SOURCE = "http://192.168.1.5:8080/video"
 | `-` | Decrease confidence threshold |
 | `T` | Toggle ByteTrack tracker on/off |
 | `L` | Toggle labels on/off |
-| `M` | Cycle model: Nano → Small → Large |
+| `M` | Cycle model: Nano → Small → Large → XL → 2XL |
 
 ## Model Sizes
 
-| Model | Accuracy (AP) | Speed | Best For |
-|-------|-------------|-------|----------|
-| Nano  | 48.4 | Fastest | Low-end hardware |
-| Small | 53.0 | Fast | Balanced (default) |
-| Large | 56.5 | Moderate | Best accuracy |
+| Model | Accuracy (AP) | Latency | Params | License | Best For |
+|-------|-------------|---------|--------|---------|----------|
+| Nano  | 48.4 | 2.3ms | 30.5M | Apache 2.0 | Low-end / Raspberry Pi |
+| Small | 53.0 | 3.5ms | 32.1M | Apache 2.0 | Balanced (default) |
+| Large | 56.5 | 6.8ms | 33.9M | Apache 2.0 | Best free accuracy |
+| XL    | 58.6 | 11.5ms | 126.4M | PML 1.0 ⚠️ | High accuracy |
+| 2XL   | 60.1 | 17.2ms | 126.9M | PML 1.0 ⚠️ | Maximum accuracy |
+
+> ⚠️ XL and 2XL require `pip install rfdetr[plus]` and are under PML 1.0 (non-commercial use only).
 
 ## Tech Stack
 
@@ -95,4 +99,6 @@ CAMERA_SOURCE = "http://192.168.1.5:8080/video"
 ## License
 
 This project is licensed under MIT.
-RF-DETR (Nano–Large) is Apache 2.0. See [rf-detr license](https://github.com/roboflow/rf-detr/blob/main/LICENSE).
+
+- RF-DETR Nano / Small / Large — [Apache 2.0](https://github.com/roboflow/rf-detr/blob/main/LICENSE) (free for commercial use)
+- RF-DETR XL / 2XL — PML 1.0 (non-commercial only, requires `pip install rfdetr[plus]`)
